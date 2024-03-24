@@ -1,0 +1,9 @@
+---
+- name: push the image
+  hosts: all
+  become: true
+  tasks:
+  - name: push the image to dockerhub
+    docker_image:
+     name: cubensquare/batch76-batch
+     push: true

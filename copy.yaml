@@ -1,0 +1,9 @@
+---
+- name: copy the file
+  hosts: all
+  become: true
+  tasks:
+  - name: Copy file 
+    copy:
+      src: /home/ansible/Dockerfile
+      dest: /home/ansible

@@ -1,0 +1,7 @@
+---
+- name: build the container image
+  hosts: all
+  become: true
+  tasks:
+  - name: build
+    command: docker build /home/ansible/ -t cubensquare/batch76-batch

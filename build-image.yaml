@@ -1,0 +1,26 @@
+---
+- name: build a container image
+  hosts: all
+  become: true
+  tasks:
+  - name: Update package cache (apt for Debian/Ubuntu)
+    apt:
+       update_cache: yes
+    when: ansible_os_family == 'Debian'
+
+  - name: Install pip (apt for Debian/Ubuntu)
+    apt:
+     name: python3-pip
+     state: present
+    when: ansible_os_family == 'Debian'
+  - name: update package
+    apt:
+     name: '*'
+     state: latest
+  - name: Build an image
+    docker_image:
+     build:
+      path: /home/ansible/
+     name: cubensquare/batch-76image
+     source: build
+
